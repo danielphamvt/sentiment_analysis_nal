@@ -64,6 +64,7 @@ def normalize_text(text):
         'ả': 'ả', 'ố': 'ố', 'u´': 'ố','ỗ': 'ỗ', 'ồ': 'ồ', 'ổ': 'ổ', 'ấ': 'ấ', 'ẫ': 'ẫ', 'ẩ': 'ẩ',
         'ầ': 'ầ', 'ỏ': 'ỏ', 'ề': 'ề','ễ': 'ễ', 'ắ': 'ắ', 'ủ': 'ủ', 'ế': 'ế', 'ở': 'ở', 'ỉ': 'ỉ',
         'ẻ': 'ẻ', 'àk': u' à ','aˋ': 'à', 'iˋ': 'ì', 'ă´': 'ắ','ử': 'ử', 'e˜': 'ẽ', 'y˜': 'ỹ', 'a´': 'á',
+        #Quy các icon về 2 loại emoj: Tích cực hoặc tiêu cực
         "👹": "nagative", "👻": "positive", "💃": "positive",'🤙': ' positive ', '👍': ' positive ',
         "💄": "positive", "💎": "positive", "💩": "positive","😕": "nagative", "😱": "nagative", "😸": "positive",
         "😾": "nagative", "🚫": "nagative",  "🤬": "nagative","🧚": "positive", "🧡": "positive",'🐶':' positive ',
@@ -91,6 +92,7 @@ def normalize_text(text):
         '🙃': ' positive ', '🤑': ' positive ', '🤪': ' positive ','☹': ' nagative ',  '💀': ' nagative ',
         '😔': ' nagative ', '😧': ' nagative ', '😩': ' nagative ', '😰': ' nagative ', '😳': ' nagative ',
         '😵': ' nagative ', '😶': ' nagative ', '🙁': ' nagative ',
+        #Chuẩn hóa 1 số sentiment words/English words
         ':))': '  positive ', ':)': ' positive ', 'ô kêi': ' ok ', 'okie': ' ok ', ' o kê ': ' ok ',
         'okey': ' ok ', 'ôkê': ' ok ', 'oki': ' ok ', ' oke ':  ' ok ',' okay':' ok ','okê':' ok ',
         ' tks ': u' cám ơn ', 'thks': u' cám ơn ', 'thanks': u' cám ơn ', 'ths': u' cám ơn ', 'thank': u' cám ơn ',
@@ -215,9 +217,9 @@ class DataSource(object):
             document = normalize_text(document)
             X.append(document.strip())
             y.append(topic)
-            #Aumentation bằng cách remove dấu tiếng Việt
-            # X.append(no_marks(document))
-            # y.append(topic)
+            #Augmentation bằng cách remove dấu tiếng Việt
+            X.append(no_marks(document))
+            y.append(topic)
         return X, y
 
 ds = DataSource()
@@ -238,7 +240,7 @@ test_data = pd.DataFrame(ds.load_data('data_clean/test.crash', is_train=False))
 classifiers = [
             # MultinomialNB(),
             # DecisionTreeClassifier(),
-            LogisticRegression(),
+            # LogisticRegression(),
             # SGDClassifier(),
             LinearSVC(fit_intercept = True,multi_class='crammer_singer', C=1),
         ]
