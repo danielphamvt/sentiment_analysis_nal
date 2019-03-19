@@ -25,4 +25,4 @@ Bằng cách train 2 lần: Lần 1 chia tập train/test theo tỉ lệ 7/3 và
 <h2>Kết quả</h2>
 Mình chạy Crossvalidation 5 folds để đánh giá model công bằng hơn. Kết quả cuối cùng CV5fold với <strong>tập dữ liệu đã gán lại nhãn</strong> là <strong>94.4%</strong>. Kết quả submit tại AIVIVN.COM của mình đạt <strong>89.57%</strong>. 
 <h2>CODE</h2>
-Mô hình của mình đặt tại <a href="https://github.com/swordmanager/sentiment_analysis_nal">Github</a>
+Mô hình của mình đặt tại <a href="https://github.com/swordmanager/sentiment_analysis_nal">Github</a>
